@@ -1,0 +1,83 @@
+Display:
+
+<Display@BoxLayout>:
+    orientation: 'vertical'
+    Label:
+        text: "Peter Please Answer"
+        font_size: "42dp"
+        font_name: "Lobster-Regular.ttf"
+        size_hint_y: .33
+
+    Image:
+        source: "alt_img.jpg"
+
+    Image:
+        source: "txt.png"
+        size_hint: 1, .6
+
+    MainLayout:
+
+    Image:
+        source: "footer.png"
+        size_hint: 1, .4
+
+<BackgroundColor@Widget>
+    background_color: 1, 1, 1, 1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<BackgroundLabel@Label+BackgroundColor>
+    background_color: 1, 1, 1
+
+<LblTxt@BoxLayout>:
+    in_text: input
+    orientation: "horizontal"
+    Label:
+        text: "Question:"
+        size_hint: .4, 1
+        font_name: "OdibeeSans-Regular.ttf"
+        font_size: "20dp"
+
+    TextInput:
+        id: input
+        font_size: "18dp"
+
+<MainLayout>:
+    orientation: "vertical"
+    padding: "50dp", "10dp", "50dp", "10dp"
+    spacing: "3dp"
+    HiddenLabelText:
+        id: hidden
+        sol: self.ids.answer
+
+    LblTxt:
+        id: ques
+
+    BoxLayout:
+        size_hint: .75, .75
+        spacing: "5dp"
+        pos_hint: {"right": .93}
+        Button:
+            text: "Ask Peter"
+            on_press: root.ask_peter()
+
+        Button:
+            text: "Reset"
+            on_press: dis.text = ""; ques.in_text.text = ""; hidden.sol.text = "";
+
+    BackgroundLabel:
+        id: dis
+        color: 0, 0, 0
+        font_size: "25dp"
+        font_name: "Poppins-Regular.ttf"
+        size_hint: .9, 1
+        pos_hint: {"right" : 1}
+
+
+
+
+
